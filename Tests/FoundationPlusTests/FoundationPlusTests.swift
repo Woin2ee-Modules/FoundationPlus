@@ -8,6 +8,10 @@ final class FoundationPlusTests: XCTestCase {
         XCTAssertEqual("".isNotEmpty, false)
     }
 
+    func test_hasElements() {
+        XCTAssertTrue([1, 2, 3].hasElements)
+    }
+
     func test_indexOfCaseIterable() {
         // Given
         let testCase: TestEnum = .test2
