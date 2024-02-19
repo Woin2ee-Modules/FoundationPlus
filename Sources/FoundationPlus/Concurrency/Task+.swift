@@ -8,7 +8,7 @@
 
 import Foundation
 
-@available(iOS 13.0, *)
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, *)
 extension Task where Success == Void, Failure == Never {
 
     @discardableResult
