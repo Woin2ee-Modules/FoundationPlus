@@ -9,19 +9,19 @@
 import Foundation
 
 @available(macOS 10.15, iOS 13.0, watchOS 6.0, *)
-extension Task where Success == Void, Failure == Never {
+extension Task where Failure == Never {
 
     @discardableResult
     public init(
         priority: TaskPriority? = nil,
-        operation: @escaping (() async throws -> Void),
-        catch: @escaping ((Error) -> Void)
+        operation: @escaping (() async throws -> Success),
+        catch: @escaping ((Error) -> Success)
     ) {
         self.init(priority: priority) {
             do {
-                try await operation()
+                return try await operation()
             } catch {
-                `catch`(error)
+                return `catch`(error)
             }
         }
     }
