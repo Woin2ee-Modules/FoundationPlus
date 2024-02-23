@@ -84,3 +84,34 @@ extension FoundationPlusTests {
         XCTAssertNil(array)
     }
 }
+
+// MARK: AllEmpty
+extension FoundationPlusTests {
+    
+    func test_allEmpty() {
+        let collection1 = Array<String>()
+        let collection2 = Set<Int>()
+        let collection3 = Dictionary<String, Int>()
+        
+        XCTAssertTrue(allEmpty(collection1, collection2, collection3))
+    }
+    
+    func test_allEmpty_whenNotEmpty() {
+        var collection1 = Array<String>()
+        let collection2 = Set<Int>()
+        let collection3 = Dictionary<String, Int>()
+        
+        collection1.append("A")
+        
+        XCTAssertFalse(allEmpty(collection1, collection2, collection3))
+    }
+}
+
+// MARK: Tuple
+extension FoundationPlusTests {
+    
+    func test_tuple() {
+        let tuple = Tuple(1, "A", TestStruct())
+        XCTAssert(type(of: tuple) == (Int, String, TestStruct).self)
+    }
+}
