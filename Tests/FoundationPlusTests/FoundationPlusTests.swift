@@ -49,7 +49,11 @@ final class FoundationPlusTests: XCTestCase {
             XCTAssertEqual(error as? TestError, TestError.testError)
         }
     }
+}
 
+// MARK: Tuple to array
+extension FoundationPlusTests {
+    
     func test_tupleToArray_whenSameTypes() {
         let tuple = (first: 1, 2, last: 3)
         let array = [Int](tuple)
@@ -69,11 +73,14 @@ final class FoundationPlusTests: XCTestCase {
     }
 
     func test_tupleToArray_whenAnyElementNotConformProtocol() {
-        struct Human {
-            var name: String
-        }
-        let tuple = (1, 2.2, Human(name: "Tom"))
+        let tuple = (1, 2.2, TestStruct(name: "Test"))
         let array = [CustomStringConvertible](tuple)
+        XCTAssertNil(array)
+    }
+    
+    func test_tupleToArray_whenNotTuple() {
+        let notTuple = "NotTuple"
+        let array = [CustomStringConvertible](notTuple)
         XCTAssertNil(array)
     }
 }
