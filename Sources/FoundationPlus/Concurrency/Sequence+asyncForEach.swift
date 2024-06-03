@@ -10,7 +10,7 @@ import Foundation
 
 extension Sequence {
 
-    @available(iOS 13.0, *)
+    @available(iOS 13.0, macOS 10.15.0, *)
     public func asyncForEach(_ body: (Self.Element) async throws -> Void) async rethrows {
         for element in self {
             try await body(element)
